@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
+    'drf_spectacular',
     'employees',
 ]
 
@@ -90,10 +91,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ],
-    'DEFAULT_FILTER_BACKENDS': (
+    'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.SearchFilter',
-    ),
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # Password validation
@@ -136,6 +138,12 @@ STATIC_URL = 'static/'
 LOGIN_REDIRECT_URL = '/api/employees/'
 LOGOUT_REDIRECT_URL = '/api/employees/'
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Employee Management API',
+    'DESCRIPTION': 'RESTful API for managing departments and employees at Thels Impact Consulting.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
