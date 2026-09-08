@@ -7,24 +7,12 @@ from .serializers import DepartmentSerializer, EmployeeSerializer
 
 
 class DepartmentViewSet(viewsets.ModelViewSet):
-    """
-    Handles CRUD operations for Departments.
-    - Unauthenticated users can view (GET).
-    - Only authenticated users can POST, PUT, DELETE.
-    """
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class EmployeeViewSet(viewsets.ModelViewSet):
-    """
-    Handles CRUD operations, filtering, and search for Employees.
-    - Unauthenticated users can view (GET).
-    - Only authenticated users can POST, PUT, DELETE.
-    - Supports filtering by department ID and active status.
-    - Supports searching by first_name, last_name, email, and job_title.
-    """
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
